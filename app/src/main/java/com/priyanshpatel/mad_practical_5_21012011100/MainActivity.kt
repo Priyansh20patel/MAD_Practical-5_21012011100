@@ -1,11 +1,14 @@
 package com.priyanshpatel.mad_practical_5_21012011100
 
 import android.content.Intent
+import android.graphics.Camera
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.provider.CallLog
 import android.provider.ContactsContract
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 
@@ -35,6 +38,16 @@ class MainActivity : AppCompatActivity() {
         glr.setOnClickListener {
             gallery()
         }
+
+        val cam : Button = findViewById(R.id.camera)
+        cam.setOnClickListener{
+            camera()
+        }
+
+        val alm : Button = findViewById(R.id.alarm)
+        alm.setOnClickListener {
+            alarm()
+        }
     }
 
     fun browser(url: String) {
@@ -54,10 +67,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun camera() {
-
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { startActivity(it) }
     }
 
     fun alarm() {
-
+        Intent(AlarmClock.ACTION_SHOW_ALARMS).also { startActivity(it) }
     }
 }
